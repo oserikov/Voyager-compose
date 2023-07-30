@@ -11,7 +11,7 @@ voyager = Voyager(
     mc_host=mc_host,
     env_wait_ticks=100,
     openai_api_key=openai_api_key,
-    bot_name=f"bot_machine_name"
+    bot_name=f"bot_{machine_name}"
 )
 
 # start lifelong learning
