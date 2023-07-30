@@ -9,3 +9,5 @@ services:
     environment:
       MINECRAFT_LAN_PORT: 43481
       MINECRAFT_OPENAI_KEY: $OPENAI_KEY
+    command:
+      python3 runner.py
