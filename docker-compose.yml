@@ -5,9 +5,6 @@ services:
       context: .
     extra_hosts:
     - "host.docker.internal:host-gateway"
-    env_file: passwords.env
-    environment:
-      MINECRAFT_LAN_PORT: 43481
-      MINECRAFT_OPENAI_KEY: $OPENAI_KEY
+    env_file: config.env
     command:
-      python3 runner.py
+      tail -f /dev/null
