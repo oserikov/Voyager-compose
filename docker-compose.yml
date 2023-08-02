@@ -7,4 +7,4 @@ services:
     - "host.docker.internal:host-gateway"
     env_file: config.env
     command:
-      tail -f /dev/null
+      python3 runner.py
