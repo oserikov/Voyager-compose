@@ -1,3 +1,4 @@
+version: "3"
 
 services:
   voyager:
@@ -30,14 +31,14 @@ services:
       EULA: "TRUE"
       VERSION: 1.19
       DIFFICULTY: peaceful
-      ALLOW_CHEATS: true
+      ALLOW_CHEATS: "true"
       MODE: creative
       TYPE: FABRIC
       FABRIC_LAUNCHER_VERSION: 0.11.2
       FABRIC_LOADER_VERSION: 0.14.8
       COPY_CONFIG_DEST: /data/config
-      SYNC_SKIP_NEWER_IN_DESTINATION: false
-      ONLINE_MODE: FALSE
+      SYNC_SKIP_NEWER_IN_DESTINATION: "false"
+      ONLINE_MODE: "FALSE"
       MODS: |
         /mods/better-respawn-fabric-1.19-2.0.0.jar
         /mods/completeconfig-2.0.0.jar
