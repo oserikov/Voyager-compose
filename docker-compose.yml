@@ -1,10 +1,51 @@
+version: "3"
 
 services:
   voyager:
     build:
-      context: .
+      context: voyager_service
+    depends_on: 
+      minecraft:
+        condition: service_healthy
     extra_hosts:
     - "host.docker.internal:host-gateway"
-    env_file: config.env
+    env_file: openai.env
+    environment:
+      MINECRAFT_LAN_PORT: 25565
     command:
-      python3 runner.py
+      python3 -u runner.py
+  minecraft:
+    build:
+      context: minecraft_server_service
+    healthcheck:
+      test: python3 -c 'import mcstatus; mcstatus.JavaServer("localhost", 25565).status()'
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 1m
+    tty: true
+    stdin_open: true
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      VERSION: 1.19
+      DIFFICULTY: peaceful
+      ALLOW_CHEATS: "true"
+      MODE: creative
+      TYPE: FABRIC
+      FABRIC_LAUNCHER_VERSION: 0.11.2
+      FABRIC_LOADER_VERSION: 0.14.8
+      COPY_CONFIG_DEST: /data/config
+      SYNC_SKIP_NEWER_IN_DESTINATION: "false"
+      ONLINE_MODE: "FALSE"
+      MODS: |
+        /mods/better-respawn-fabric-1.19-2.0.0.jar
+        /mods/completeconfig-2.0.0.jar
+        /mods/fabric-api-0.58.0+1.19.jar
+        /mods/modmenu-4.0.4.jar
+        /mods/Multiplayer-Server-Pause-1.19-Fabric-1.1.0.jar
+    volumes:
+      - ./minecraft_server_service/data:/data
+      - ./minecraft_server_service/mods:/mods
+      - ./minecraft_server_service/config:/config
