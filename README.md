@@ -1,6 +1,6 @@
 Run Voyager without paying attention to dependencies, NPM etc. 
 
-*** multiple agents supported!***
+***multiple agents supported!***
 
 
 It runs Minecraft server and voyager (or many voyagers) so that you don't need to manage dependencies, fabric etc.
@@ -10,7 +10,7 @@ The only difference from original MS-Voyager repo is bots have distinguishable u
 **tl;dr:**
 1. `git clone --recurse-submodules https://github.com/oserikov/Voyager-compose`
 2. provide OpenAI key in the `openai.env` file
-3. `docker-compose up` will run Voyager agent and Minecraft server (or `docker-compose up --scale voyager=NUMBER` to run NUMBER of Voyager agents in your Minecraft world)
+3. `docker compose up` will run Voyager agent and Minecraft server (or `docker compose up --scale voyager=NUMBER` to run NUMBER of Voyager agents in your Minecraft world)
 
 Problems: 
 - agents pause and unpause world independently, I'm not sure if this is OK
