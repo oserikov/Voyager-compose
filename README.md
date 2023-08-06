@@ -16,6 +16,5 @@ Difference from original MS-Voyager repo
 3. `docker compose up` will run Voyager agent and Minecraft server (or `docker compose up --scale voyager=NUMBER` to run NUMBER of Voyager agents in your Minecraft world)
 
 Problems: 
-- agents pause and unpause world independently, I'm not sure if this is OK
 - agents pay no attention to each other
 
