@@ -12,8 +12,12 @@ services:
     env_file: openai.env
     environment:
       MINECRAFT_LAN_PORT: 25565
+      MINECRAFT_LAN_HOST: minecraft
+      # MINECRAFT_LAN_HOST: host.docker.internal
     command:
       python3 -u runner.py
+    volumes:
+      - ./voyager_service/Voyager/voyager/prompts:/Voyager-compose/Voyager/voyager/prompts
   minecraft:
     build:
       context: minecraft_server_service
@@ -31,7 +35,7 @@ services:
       EULA: "TRUE"
       VERSION: 1.19
       DIFFICULTY: peaceful
-      MODE: creative
+      MODE: survival
       TYPE: FABRIC
       FABRIC_LAUNCHER_VERSION: 0.11.2
       FABRIC_LOADER_VERSION: 0.14.8
@@ -40,10 +44,10 @@ services:
       ONLINE_MODE: "FALSE"
       RCON_CMDS_STARTUP:  |-
         /difficulty peaceful
-        /defaultgamemode creative
+        /defaultgamemode survival
       RCON_CMDS_ON_CONNECT: |
         /op @a
-        /op gamemode creative
+        /gamemode survival @a
       MODS: |
         /mods/better-respawn-fabric-1.19-2.0.0.jar
         /mods/completeconfig-2.0.0.jar
