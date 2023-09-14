@@ -26,7 +26,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 6
-      start_period: 2m
+      start_period: 5m
     tty: true
     stdin_open: true
     ports:
